@@ -1,13 +1,17 @@
 "use client";
 
+import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signIn } from "next-auth/react";
+import Error from "next/error";
 import { useState } from "react";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -24,9 +28,12 @@ export default function RegisterForm() {
       });
       if (res.ok) {
         //redirect
+        signIn();
+      } else {
+        setError((await res.json()).error);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setError(error?.message);
     }
 
     console.log("Register!");
@@ -42,6 +49,7 @@ export default function RegisterForm() {
         </label>
         <input
           onChange={(e) => setEmail(e.target.value)}
+          required
           value={email}
           id="email"
           type="email"
@@ -54,12 +62,14 @@ export default function RegisterForm() {
         </label>
         <input
           onChange={(e) => setPassword(e.target.value)}
+          required
           value={password}
           id="password"
           type="password"
           className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
         />
       </div>
+      {error ? <Alert>{error}</Alert> : null}
       <div className="w-full">
         <button
           type="submit"

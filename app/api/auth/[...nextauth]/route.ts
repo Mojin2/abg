@@ -57,14 +57,14 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log(`Session Callback`, { session, token });
+      // console.log(`Session Callback`, { session, token });
       return {
         ...session,
         user: { ...session.user, id: token.id, randomKey: token.randomKey },
       };
     },
     jwt: ({ token, user }) => {
-      console.log(`JWT Callback`, { token, user });
+      // console.log(`JWT Callback`, { token, user });
       if (user) {
         const u = user as unknown as any;
         return {
@@ -77,6 +77,9 @@ export const authOptions: NextAuthOptions = {
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/signin",
+  },
 };
 const handler = NextAuth(authOptions);
 
