@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function cls(...classnames: string[]) {
-  return classnames.join("");
+  return classnames.join(" ");
 }

@@ -1,7 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import AuthSession from "./AuthSession";
+import SideNavbar from "@/components/sidebar";
+import Navbar from "@/components/navbar";
+import UiProvider from "./uiProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="w-full max-w-xl mx-auto">
-          <AuthSession>{children}</AuthSession>
-        </div>
+        <UiProvider>
+          <AuthSession>
+            <SideNavbar />
+            {children}
+          </AuthSession>
+        </UiProvider>
       </body>
     </html>
   );
