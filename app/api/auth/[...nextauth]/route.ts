@@ -3,9 +3,9 @@ import NaverProvider from "next-auth/providers/naver";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { compare } from "bcryptjs";
-import { prisma } from "@/libs/server/prisma";
 import { Adapter } from "next-auth/adapters";
 import { compareSync } from "bcrypt";
+import prisma from "@/libs/server/prisma";
 
 export const authOptions: NextAuthOptions = {
   session: {

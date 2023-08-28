@@ -1,75 +1,83 @@
-// "use client";
-// import useCharacter from "@/libs/client/useCharacter";
+"use client";
 
-// export default function InfoCard() {
-//   const { profile, equipment } = useCharacter();
-//   const imgsrc = profile?.CharacterImage;
-
-//   return (
-//     <div className="mt-4">
-//       {/* Character Info */}
-//       <div className="bg-slate-950 mx-4 my-4 relative h-[460px] rounded-md shadow-2xl max-w-sm">
-//         <div className="flex flex-col justify-center items-center">
-//           {/* Image */}
-//           <div className="py-2">
-//             <img src={imgsrc} className="" />
-//           </div>
-//           {/* Level Info */}
-//           <div className="absolute py-3 bottom-0 flex flex-col  text-slate-100 bg-slate-950 w-full justify-center items-center ">
-//             <div className="flex flex-row space-x-2 items-end">
-//               <span className="font-bold text-2xl">
-//                 {profile?.CharacterName}
-//               </span>
-//               <span className="font-bold text-cyan-600">{profile?.Title}</span>
-//             </div>
-//             <div className="flex flex-row space-x-10 justify-between px-2">
-//               <div className="flex flex-col text-center ">
-//                 <span className="text-slate-400 text-sm">아이템</span>
-//                 <span className="font-bold text-lg">{`Lv.${profile?.CharacterLevel}`}</span>
-//               </div>
-//               <div className="flex flex-col text-center">
-//                 <span className="text-slate-400 text-sm">전투</span>
-//                 <span className="font-bold text-lg">
-//                   {profile?.ItemMaxLevel}
-//                 </span>
-//               </div>
-//             </div>
-//           </div>
-//           {/* Equipment Info */}
-//           <div className="absolute bottom-0 h-full z-0 w-full flex flex-row justify-between px-2 pt-2">
-//             <div className="space-y-2 flex flex-col">
-//               {equipment?.map((data, idx) => {
-//                 if (idx < 6)
-//                   return (
-//                     <div
-//                       className="aspect-square w-12 rounded-md bg-gradient-to-br from-[#3d3325] to-[#dcc999]"
-//                       key={idx}
-//                     >
-//                       <img src={`${data.Icon}`} />
-//                     </div>
-//                   );
-//               })}
-//             </div>
-//             <div className="space-y-2">
-//               {equipment?.map((data, idx) => {
-//                 if (idx >= 6 && idx < 13)
-//                   return (
-//                     <div
-//                       className="aspect-square w-12 rounded-md bg-gradient-to-br from-[#3d3325] to-[#dcc999]"
-//                       key={idx}
-//                     >
-//                       <img src={`${data.Icon}`} />
-//                     </div>
-//                   );
-//               })}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-export default function InfoCard() {
-  return <div> info</div>;
+import useCharacter from "@/libs/client/useCharacter";
+import { Image, Spinner } from "@chakra-ui/react";
+import { GiCrestedHelmet } from "react-icons/gi";
+interface NameProps {
+  name: string;
+}
+export default function InfoCard(props: NameProps) {
+  const { profile, equipment } = useCharacter(props.name);
+  const imgsrc = profile?.CharacterImage;
+  return (
+    <div className="relative bg-slate-950 w-full h-0 overflow-hidden pb-[95%] rounded-[10px] text-white shadow-lg">
+      {profile ? (
+        <div>
+          {/* Image */}
+          <div className="mix-blend-lighten bg-transparent w-full h-0 pb-[95%]">
+            <Image
+              src={imgsrc}
+              className="absolute left-[20%] bg-transparent scale-[1.4] top-[20%]"
+            />
+          </div>
+          <div className="absolute top-0 bottom-0 left-0 w-1/2 opacity-[45%] bg-gradient-to-r to-transparent from-[#F25068]" />
+          {/* Upside Info */}
+          <div className="absolute top-0 left-0 h-1/2 w-fullrounded-[10px] space-y-4 pt-6 pl-3 sm:space-y-1 md:pt-3">
+            <div className="font-semibold text-xl sm:text-lg md:text-base">{`Lv. ${profile?.CharacterLevel} ${profile?.CharacterClassName} @${profile?.ServerName}`}</div>
+            <div className="font-extrabold text-4xl sm:text-2xl md:text-2xl">{`${profile?.CharacterName}`}</div>
+            <div className="font-extrabold text-2xl flex flex-row items-center sm:text-xl md:text-2xl">
+              <GiCrestedHelmet /> {`${profile?.ItemAvgLevel}`}
+            </div>
+          </div>
+          {/* Downside Info */}
+          <div className="absolute bottom-0 left-0 h-1/2 w-full rounded-[10px] space-y-1 md:space-y-0">
+            <div className="flex flex-col w-full h-full justify-end pl-3 pb-3">
+              <div className="flex flex-row items-center justify-start space-x-2 font-bold text-xl sm:text-lg md:text-sm">
+                <div className="rounded-full px-2 text-white bg-slate-900 text-sm sm:text-xs">
+                  원정대
+                </div>
+                <div>{profile?.ExpeditionLevel}</div>
+              </div>
+              <div className="flex flex-row items-center justify-start space-x-2 font-bold text-xl sm:text-lg md:text-sm">
+                <div className="rounded-full px-2 text-white bg-slate-900 text-sm sm:text-xs">
+                  칭호
+                </div>
+                <div>{profile?.Title}</div>
+              </div>
+              <div className="flex flex-row items-center justify-start space-x-2 font-bold text-xl sm:text-lg md:text-sm">
+                <div className="rounded-full px-2 text-white bg-slate-900 text-sm sm:text-xs">
+                  길드
+                </div>
+                <div>{profile?.GuildName}</div>
+              </div>
+              <div className="flex flex-row items-center justify-start space-x-2 font-bold text-xl sm:text-lg md:text-sm">
+                <div className="rounded-full px-2 text-white bg-slate-900 text-sm sm:text-xs">
+                  PVP
+                </div>
+                <div>
+                  {profile?.PvpGradeName ? `${profile?.PvpGradeName}` : " "}
+                </div>
+              </div>
+              <div className="flex flex-row items-center justify-start space-x-2 font-bold text-xl sm:text-lg md:text-sm">
+                <div className="rounded-full px-2 text-white bg-slate-900 text-sm sm:text-xs">
+                  영지
+                </div>
+                <div>{`Lv.${profile?.TownLevel} ${profile?.TownName}`}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-center mt-[40%] justify-center">
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.800"
+            color="white.500"
+            size="xl"
+          />
+        </div>
+      )}
+    </div>
+  );
 }

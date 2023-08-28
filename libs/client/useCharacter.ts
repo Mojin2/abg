@@ -41,10 +41,9 @@ interface EquProps {
   Tooltip: string;
 }
 const url = "https://developer-lostark.game.onstove.com";
-export default function useCharacter() {
+export default function useCharacter(charname: string) {
   const [profile, setProfile] = useState<CharProps>();
   const [equipment, setEquipment] = useState<EquProps[]>();
-  const charname = "존나쎄보여";
   useEffect(() => {
     const api = "bearer " + process.env.NEXT_PUBLIC_LOSTARK_API_KEY;
     fetch(url + `/armories/characters/${charname}`, {
