@@ -5,6 +5,7 @@ generator client {
 datasource db {
     provider = "mysql"
     url = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model User {
@@ -12,4 +13,69 @@ model User {
     email       String @unique
     password    String
     name        String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    Characters  Character[]
 }
+
+model Character {
+    id              Int @id @default(autoincrement())
+    user            User @relation(fields: [userId], references: [id],onDelete: Cascade)
+    userId          Int
+    armoryProfile   ArmoryProfile[]
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    
+
+    @@index([userId])
+}
+
+model ArmoryProfile {
+    id                  Int @id @default(autoincrement())
+    CharacterImage      String
+    ExpeitionLevel      Int
+    PvpGradeName        String
+    TownLevel           Int
+    TownName            String
+    Title               String
+    GuildMemberGrade    String
+    GuildName           String
+    UsingSkillPoint     Int
+    TotalSkillPoint     Int
+    Statuses            Status[]
+    Tendencieses        Tendencies[]
+    ServerName          String
+    CharacterName       String
+    CharacterLevel      Int
+    CharacterClassName  String
+    ItemAvgLevel        String
+    ItemMaxLevel        String
+    character           Character @relation(fields: [characterId], references: [id],onDelete: Cascade)     
+    characterId         Int
+    createdAt           DateTime @default(now())
+    updatedAt           DateTime @updatedAt
+
+    @@index([characterId])
+}
+
+model Status{
+    id                  Int @id @default(autoincrement())
+    Type                String
+    Value               String
+    Tootip              String
+    armoryProfile       ArmoryProfile @relation(fields: [aromoryProfileId], references: [id],onDelete: Cascade)
+    aromoryProfileId    Int
+
+    @@index([aromoryProfileId])
+}
+model Tendencies{
+    id                  Int @id @default(autoincrement())
+    Type                String
+    Point               Int
+    MaxPoint            Int
+    armoryProfile       ArmoryProfile @relation(fields: [aromoryProfileId], references: [id],onDelete: Cascade)
+    aromoryProfileId    Int
+
+    @@index([aromoryProfileId])
+}
+

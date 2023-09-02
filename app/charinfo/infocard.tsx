@@ -2,6 +2,7 @@
 
 import useCharacter from "@/libs/client/useCharacter";
 import { Image, Spinner } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { GiCrestedHelmet } from "react-icons/gi";
 interface NameProps {
   name: string;
@@ -9,6 +10,17 @@ interface NameProps {
 export default function InfoCard(props: NameProps) {
   const { profile, equipment } = useCharacter(props.name);
   const imgsrc = profile?.CharacterImage;
+  useEffect(() => {
+    fetch("/api/info", {
+      method: "POST",
+      body: JSON.stringify({
+        profile,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }, []);
   return (
     <div className="relative bg-slate-950 w-full h-0 overflow-hidden pb-[95%] rounded-[10px] text-white shadow-lg">
       {profile ? (

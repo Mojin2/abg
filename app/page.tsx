@@ -1,26 +1,31 @@
-import Navbar from "@/components/navbar";
-import SideNavbar from "@/components/sidebar";
+import BottomNav from "@/components/BottomNav";
 import { getServerSession } from "next-auth";
-import Link from "next/link";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import { LoginButton, LogoutButton } from "./auth";
 import ClientSession from "./clientSession";
 import ContentLayout from "./contentLayout";
-import DataFetchingSWR from "./dataFetching";
-import DataFetching from "./dataFetching";
 
-export default async function Home() {
-  const session = await getServerSession(authOptions);
-
+export default function Home() {
   return (
-    <div>
-      <Navbar />
-      <ContentLayout>
-        <div>Session Server Side</div>
-        <div>{JSON.stringify(session)}</div>
-        <div>Session Client Side</div>
-        <ClientSession />
-      </ContentLayout>
-    </div>
+    <ContentLayout>
+      <div className="flex items-center justify-center w-full h-full bg-blue-500 text-white font-extrabold text-5xl">
+        Home
+      </div>
+      <BottomNav />
+    </ContentLayout>
   );
 }
+// export default async function Home() {
+//   const session = await getServerSession(authOptions);
+
+//   return (
+//     <div>
+//       <ContentLayout>
+//         <div>Session Server Side</div>
+//         <div>{JSON.stringify(session)}</div>
+//         <div>Session Client Side</div>
+//         <ClientSession />
+//         <BottomNav />
+//       </ContentLayout>
+//     </div>
+//   );
+// }

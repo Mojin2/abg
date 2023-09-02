@@ -44,7 +44,6 @@ export default function Contact() {
 
   return (
     <>
-      <Navbar />
       <ContentLayout>
         <Flex
           className="bg-slate-100"

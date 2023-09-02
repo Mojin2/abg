@@ -22,10 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UiProvider>
-          <AuthSession>
-            <SideNavbar />
-            {children}
-          </AuthSession>
+          <AuthSession>{children}</AuthSession>
         </UiProvider>
       </body>
     </html>
