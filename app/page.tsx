@@ -6,12 +6,14 @@ import ContentLayout from "./contentLayout";
 
 export default function Home() {
   return (
-    <ContentLayout>
-      <div className="flex items-center justify-center w-full h-full bg-blue-500 text-white font-extrabold text-5xl">
-        Home
-      </div>
+    <div>
+      <ContentLayout>
+        <div className="flex items-center justify-center w-full h-full bg-blue-500 text-white font-extrabold text-5xl">
+          Home
+        </div>
+      </ContentLayout>
       <BottomNav />
-    </ContentLayout>
+    </div>
   );
 }
 // export default async function Home() {

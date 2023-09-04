@@ -8,12 +8,14 @@ import InfoInsta from "./infoinsta";
 
 export default function Charinfo() {
   return (
-    <ContentLayout>
-      <div className="flex items-center justify-center w-full h-full bg-violet-500 text-white font-extrabold text-5xl">
-        Character
-      </div>
+    <div>
+      <ContentLayout>
+        <div className="flex items-center justify-center w-full h-full bg-violet-500 text-white font-extrabold text-5xl">
+          Character
+        </div>
+      </ContentLayout>
       <BottomNav />
-    </ContentLayout>
+    </div>
   );
 }
 // export default function CharInfo() {

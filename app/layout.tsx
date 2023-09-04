@@ -5,6 +5,8 @@ import AuthSession from "./AuthSession";
 import SideNavbar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
 import UiProvider from "./uiProvider";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 

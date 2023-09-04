@@ -17,7 +17,14 @@ import { useState } from "react";
 import AvatarLogo from "./AvatarLogo";
 import MobileNav from "./MobileNav";
 import TooltipInfo from "./Tooltip";
+import { motion } from "framer-motion";
 
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/charinfo", label: "Mokoko" },
+  { href: "/info", label: "Info" },
+  { href: "/setting", label: "setting" },
+];
 export default function BottomNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -37,54 +44,39 @@ export default function BottomNav() {
                   <BellIcon stroke="white" fill="#20d274" size="32px" />
                 </div>
                 <div className=" flex-row space-x-2 hidden md:flex">
-                  <Link href="/">
-                    <TooltipInfo label="Home">
-                      <div
-                        className={cls(
-                          "hover:bg-emerald-400 p-3 rounded-md",
-                          pathname === "/" ? "bg-emerald-400" : ""
-                        )}
-                      >
-                        <Newspaper stroke="white" fill="#20d274" size="32px" />
-                      </div>
-                    </TooltipInfo>
-                  </Link>
-                  <Link href="/charinfo">
-                    <TooltipInfo label="Mokoko">
-                      <div
-                        className={cls(
-                          "hover:bg-emerald-400 p-3 rounded-md",
-                          pathname === "/charinfo" ? "bg-emerald-400" : ""
-                        )}
-                      >
-                        <Laugh stroke="white" fill="#20d274" size="32px" />
-                      </div>
-                    </TooltipInfo>
-                  </Link>
-                  <Link href="/info">
-                    <TooltipInfo label="Info">
-                      <div
-                        className={cls(
-                          "hover:bg-emerald-400 p-3 rounded-md",
-                          pathname === "/info" ? "bg-emerald-400" : ""
-                        )}
-                      >
-                        <Info stroke="white" fill="#20d274" size="32px" />
-                      </div>
-                    </TooltipInfo>
-                  </Link>
-                  <Link href="/setting">
-                    <TooltipInfo label="Setting">
-                      <div
-                        className={cls(
-                          "hover:bg-emerald-400 p-3 rounded-md",
-                          pathname === "/setting" ? "bg-emerald-400" : ""
-                        )}
-                      >
-                        <Settings stroke="white" fill="#20d274" size="32px" />
-                      </div>
-                    </TooltipInfo>
-                  </Link>
+                  {links.map((link, idx) => (
+                    <Link className="relative" href={link.href}>
+                      {link.href === pathname && (
+                        <motion.div
+                          layoutId="select"
+                          className="absolute m-auto left-0 bottom-0 w-full h-[4px] bg-emerald-600 rounded-md"
+                        />
+                      )}
+                      <TooltipInfo label={link.label}>
+                        <div
+                          className={cls("hover:bg-emerald-400 p-3 rounded-md")}
+                        >
+                          {idx === 0 ? (
+                            <Newspaper
+                              stroke="white"
+                              fill="#20d274"
+                              size="32px"
+                            />
+                          ) : idx === 1 ? (
+                            <Laugh stroke="white" fill="#20d274" size="32px" />
+                          ) : idx === 2 ? (
+                            <Info stroke="white" fill="#20d274" size="32px" />
+                          ) : idx === 3 ? (
+                            <Settings
+                              stroke="white"
+                              fill="#20d274"
+                              size="32px"
+                            />
+                          ) : null}
+                        </div>
+                      </TooltipInfo>
+                    </Link>
+                  ))}
                 </div>
                 <div className="flex flex-row space-x-1">
                   <div className="hover:bg-emerald-400 p-3 rounded-md">
@@ -119,7 +111,7 @@ export default function BottomNav() {
         </div>
       </div>
       {/* mobile side nav */}
-      <>
+      <div>
         {open ? (
           <div
             className="absolute w-full h-full bg-slate-700 top-0 left-0 opacity-50"
@@ -132,9 +124,11 @@ export default function BottomNav() {
             open ? "translate-x-0" : "translate-x-[-110%]"
           )}
         >
-          <MobileNav />
+          {open ? <MobileNav /> : null}
         </div>
-      </>
+      </div>
     </div>
   );
 }
+
+// pathname === link.href ? "bg-emerald-400" : ""
