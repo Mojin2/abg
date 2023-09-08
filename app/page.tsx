@@ -1,4 +1,6 @@
 import BottomNav from "@/components/BottomNav";
+import CustomCard from "@/components/CustomCard";
+import Header from "@/components/Header";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import ClientSession from "./clientSession";
@@ -7,10 +9,9 @@ import ContentLayout from "./contentLayout";
 export default function Home() {
   return (
     <div>
+      <Header title="DashBoard" detail="Custom your dashboard" />
       <ContentLayout>
-        <div className="flex items-center justify-center w-full h-full bg-blue-500 text-white font-extrabold text-5xl">
-          Home
-        </div>
+        <CustomCard name="존나쎄보여" />
       </ContentLayout>
       <BottomNav />
     </div>

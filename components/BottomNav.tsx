@@ -29,19 +29,19 @@ export default function BottomNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden">
+    <>
       {/* bottom nav */}
-      <div className="flex w-full justify-center shadow relative">
-        <div className=" bg-[#20d274] h-20 fixed bottom-0 w-full md:w-[90%] md:rounded-t-[30px]">
+      <div className="flex w-full justify-center bottom-0 bg-slate-200 h-20 fixed">
+        <div className=" bg-[#244287b3] h-20 bottom-0 w-full md:w-[90%] md:rounded-t-[30px]">
           <div className="w-full flex flex-row items-center">
             <div className="w-40 flex text-white font-extrabold h-20 rounded-t-[30px] items-center justify-center flex-col text-sm">
-              <Bot stroke="white" fill="#20d274" size="40px" />
+              <Bot stroke="white" fill="#244287b3" size="40px" />
               <div>MOKOKO</div>
             </div>
-            <div className="bg-[#1cbd68] h-20 bottom-0 w-full md:rounded-t-[30px] flex items-center">
+            <div className="bg-[#244287d9] h-20 bottom-0 w-full md:rounded-t-[30px] flex items-center">
               <div className="w-full flex justify-end md:justify-between px-6">
-                <div className="p-3 rounded-md hover:bg-emerald-400 hidden md:flex">
-                  <BellIcon stroke="white" fill="#20d274" size="32px" />
+                <div className="p-3 rounded-md hover:bg-blue-[#244287b3] hidden md:flex">
+                  <BellIcon stroke="white" fill="#244287b3" size="32px" />
                 </div>
                 <div className=" flex-row space-x-2 hidden md:flex">
                   {links.map((link, idx) => (
@@ -54,22 +54,28 @@ export default function BottomNav() {
                       )}
                       <TooltipInfo label={link.label}>
                         <div
-                          className={cls("hover:bg-emerald-400 p-3 rounded-md")}
+                          className={cls(
+                            "hover:bg-blue-[#244287b3] p-3 rounded-md"
+                          )}
                         >
                           {idx === 0 ? (
                             <Newspaper
                               stroke="white"
-                              fill="#20d274"
+                              fill="#244287b3"
                               size="32px"
                             />
                           ) : idx === 1 ? (
-                            <Laugh stroke="white" fill="#20d274" size="32px" />
+                            <Laugh
+                              stroke="white"
+                              fill="#244287b3"
+                              size="32px"
+                            />
                           ) : idx === 2 ? (
-                            <Info stroke="white" fill="#20d274" size="32px" />
+                            <Info stroke="white" fill="#244287b3" size="32px" />
                           ) : idx === 3 ? (
                             <Settings
                               stroke="white"
-                              fill="#20d274"
+                              fill="#244287b3"
                               size="32px"
                             />
                           ) : null}
@@ -79,26 +85,26 @@ export default function BottomNav() {
                   ))}
                 </div>
                 <div className="flex flex-row space-x-1">
-                  <div className="hover:bg-emerald-400 p-3 rounded-md">
-                    <Globe stroke="white" fill="#20d274" size="32px" />
+                  <div className="hover:bg-blue-[#244287b3] p-3 rounded-md">
+                    <Globe stroke="white" fill="#244287b3" size="32px" />
                   </div>
-                  <div className="hover:bg-emerald-400 p-3 rounded-md">
+                  <div className="hover:bg-blue-[#244287b3] p-3 rounded-md">
                     <AvatarLogo />
                   </div>
                   {open ? (
-                    <div className="hover:bg-emerald-400 p-3 rounded-md md:hidden">
+                    <div className="hover:bg-blue-[#244287b3] p-3 rounded-md md:hidden">
                       <X
                         stroke="white"
-                        fill="#20d274"
+                        fill="#244287b3"
                         size="32px"
                         onClick={() => setOpen(true)}
                       />
                     </div>
                   ) : (
-                    <div className="hover:bg-emerald-400 p-3 rounded-md md:hidden">
+                    <div className="hover:bg-blue-[#244287b3] p-3 rounded-md md:hidden">
                       <AlignJustify
                         stroke="white"
-                        fill="#20d274"
+                        fill="#244287b3"
                         size="32px"
                         onClick={() => setOpen(true)}
                       />
@@ -127,7 +133,7 @@ export default function BottomNav() {
           {open ? <MobileNav /> : null}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

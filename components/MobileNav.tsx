@@ -22,7 +22,7 @@ export default function MobileNav() {
       <div className="text-white font-bold text-xl space-y-2">
         {links.map((link) => (
           <Link href={link.href}>
-            <div className="p-4 hover:bg-emerald-400 text-2xl py-2 rounded-md">
+            <div className="p-4 hover:bg-blue-[#244287b3] text-2xl py-2 rounded-md">
               <div>{link.label}</div>
             </div>
           </Link>
