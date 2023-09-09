@@ -9,16 +9,16 @@ export default function CustomCard(props: Props) {
   const { profile, equipment } = useCharacter(props.name);
   const imgsrc = profile?.CharacterImage;
   return (
-    <div className="flex flex-row items-center">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div className=" bg-slate-200 shadow-md rounded-md row-span-4 sm:row-span-3 relative overflow-hidden w-80 h-80">
         <Image
           src={imgsrc}
           className="rounded-md object-none w-full h-full absolute "
         />
       </div>
-      <div className="flex flex-col space-y-2">
-        <div className=" bg-slate-300 shadow-md rounded-md w-[300px] h-[50px]"></div>
-        <div className=" bg-slate-300 shadow-md rounded-md w-[300px] h-[150px]"></div>
+      <div className="flex flex-col space-y-3 col-span-2">
+        <div className=" bg-slate-300 shadow-md rounded-md w-[500px] h-[50px]"></div>
+        <div className=" bg-slate-300 shadow-md rounded-md w-[500px] h-[258px]"></div>
       </div>
     </div>
   );

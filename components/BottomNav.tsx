@@ -45,7 +45,7 @@ export default function BottomNav() {
                 </div>
                 <div className=" flex-row space-x-2 hidden md:flex">
                   {links.map((link, idx) => (
-                    <Link className="relative" href={link.href}>
+                    <Link className="relative" href={link.href} key={link.href}>
                       {link.href === pathname && (
                         <motion.div
                           layoutId="select"
