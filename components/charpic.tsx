@@ -26,7 +26,7 @@ export default function CharPic(props: Props) {
   );
 
   return (
-    <div className="bg-yellow-200 mb-5 flex-row grid grid-cols-3  md:grid-cols-5 lg:grid-cols-7 gap-1.5 p-5">
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-1.5 pb-5">
       {charListSortArr?.map((char, idx) => (
         <CharPicDetail key={idx} name={char.CharacterName} />
       ))}

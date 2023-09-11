@@ -8,7 +8,7 @@ interface Props {
 export default function Header(props: Props) {
   return (
     <div className="flex w-full justify-center bg-slate-200 pt-5">
-      <div className="w-[90%] h-28 sm:h-20 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3">
+      <div className="w-[80%] h-28 sm:h-20 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3">
         {/* left side */}
         <div className="flex flex-row space-x-4">
           <div className="w-14 h-14 bg-slate-50 shadow-md rounded-md"></div>

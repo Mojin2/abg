@@ -15,7 +15,7 @@ export default function ContentLayout({
   };
   const pathname = usePathname();
   return (
-    <div className="flex justify-center mx-auto h-full bg-green-200 mb-24 p-5 items-center">
+    <div className="flex w-[80%] mx-auto h-full pt-8 items-center">
       <motion.div
         key={pathname}
         initial={{

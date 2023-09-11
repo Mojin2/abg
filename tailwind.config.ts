@@ -28,6 +28,10 @@ const config: Config = {
       gridTemplateRows: {
         "10": "repeat(10,minmax(0,1fr))",
       },
+      scale: {
+        "200": "2.00",
+        "180": "1.80",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -86,5 +90,8 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [require("tailwindcss-animate")],
+  corePlugins: {
+    preflight: false,
+  },
 };
 export default config;

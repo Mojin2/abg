@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/charinfo", label: "Mokoko" },
+  { href: "/todos", label: "Mokoko" },
   { href: "/info", label: "Info" },
   { href: "/setting", label: "setting" },
 ];

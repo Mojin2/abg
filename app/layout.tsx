@@ -1,12 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
-import AuthSession from "./AuthSession";
+import AuthSession from "../components/provider/AuthSession";
 import SideNavbar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
-import UiProvider from "./uiProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
+import BottomNav from "@/components/BottomNav";
+import UiProvider from "../components/provider/uiProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UiProvider>
-          <AuthSession>{children}</AuthSession>
+          <AuthSession>
+            <div className="mb-24">{children}</div>
+            <BottomNav />
+          </AuthSession>
         </UiProvider>
       </body>
     </html>
